@@ -50,10 +50,11 @@ module SerpentEncryptCore (
                 Serpent_S7 sb (.x0(x0), .x1(x1), .x2(x2), .x3(x3),
                                .y0(s0), .y1(s1), .y2(s2), .y3(s3));
             end
-            wire [31:0] l0, l1, l2, l3;
-            Serpent_LT lt (.x0(s0), .x1(s1), .x2(s2), .x3(s3),
-                           .y0(l0), .y1(l1), .y2(l2), .y3(l3));
-            assign state[r+1] = {l3, l2, l1, l0};
+            wire [127:0] l;
+            wire [127:0] s = {s3, s2, s1, s0};
+            
+            Serpent_LT lt (.in_state(s), .out_state(l));
+            assign state[r+1] = l;
         end
     endgenerate
     wire [127:0] last_in  = state[31] ^ subkeys[31];
@@ -75,8 +76,8 @@ module SerpentEncryptTop (
     input  wire [127:0] data_in,
     output wire [127:0] data_out
 );
-    intial begin
-    static reg [255:0] key256 = 256'h0123_4567_89AB_CDEF_0123_4567_89AB_CDEF_0123_4567_89AB_CDEF_0123_4567_89AB_CDEF;
+    
+    localparam [255:0] key256 = 256'h0123_4567_89AB_CDEF_0123_4567_89AB_CDEF_0123_4567_89AB_CDEF_0123_4567_89AB_CDEF;
     wire [127:0] roundKeys [0:32];
 
     serpent_keys key_expander (
@@ -99,5 +100,5 @@ module SerpentEncryptTop (
         end
     end
 `endif
-    end
+
 endmodule
