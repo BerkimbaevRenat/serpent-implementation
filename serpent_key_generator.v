@@ -2,6 +2,7 @@ module serpent_keys (
     input  wire [255:0] key256,
     output wire [127:0] keys[32:0]
 );
+
     always @* begin
         //delete static before use
         //static reg [255:0] key256 = 256'h0123_4567_89AB_CDEF_0123_4567_89AB_CDEF_0123_4567_89AB_CDEF_0123_4567_89AB_CDEF;
@@ -20,7 +21,7 @@ module serpent_keys (
             tmp = mid_keys[i];
             mid_keys[i] = (tmp << 11) | (tmp >> 21);
         end
-        //print(otladka)
+        //print
         for(i = -8; i < 132; i = i+1) begin
             $display("mid_keys[%0d] = %032b", i, mid_keys[i]);
         end
