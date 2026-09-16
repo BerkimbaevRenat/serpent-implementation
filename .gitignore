@@ -1,0 +1,8 @@
+# Local simulation outputs
+/build/
+/tests/.build/
+__pycache__/
+*.py[cod]
+*.vcd
+*.vvp
+.DS_Store

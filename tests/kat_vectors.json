@@ -1,0 +1,241 @@
+{
+  "description": "Unmodified byte strings transcribed from the author-published NESSIE verified test vectors. Hex is byte order as printed by NESSIE, NOT a SystemVerilog integer literal; pack using int.from_bytes(value, little).",
+  "sources": [
+    {
+      "key_bits": 128,
+      "url": "https://biham.cs.technion.ac.il/Reports/Serpent/Serpent-128-128.verified.test-vectors",
+      "sha256": "b7516da213f8f284bc5c531594b43d194a32fabd3ede14ec95979b6787e4f193",
+      "downloaded_utc": "2026-09-16"
+    },
+    {
+      "key_bits": 192,
+      "url": "https://biham.cs.technion.ac.il/Reports/Serpent/Serpent-192-128.verified.test-vectors",
+      "sha256": "cc5f5662a736f0e69c70595a084b01f50ff31a8d9af4f15c06e9d7c1455a1e01",
+      "downloaded_utc": "2026-09-16"
+    },
+    {
+      "key_bits": 256,
+      "url": "https://biham.cs.technion.ac.il/Reports/Serpent/Serpent-256-128.verified.test-vectors",
+      "sha256": "ce5eb6e06889cdc1b30ca7e2941bc7a7a15650410d6294e8af8a9d29dd73d32c",
+      "downloaded_utc": "2026-09-16"
+    }
+  ],
+  "vectors": [
+    {
+      "key_bits": 128,
+      "set": 1,
+      "vector": 0,
+      "key": "80000000000000000000000000000000",
+      "plaintext": "00000000000000000000000000000000",
+      "ciphertext": "264E5481EFF42A4606ABDA06C0BFDA3D"
+    },
+    {
+      "key_bits": 128,
+      "set": 1,
+      "vector": 31,
+      "key": "00000001000000000000000000000000",
+      "plaintext": "00000000000000000000000000000000",
+      "ciphertext": "D326FEA25FE2CA220CEC62DB9574AAFD"
+    },
+    {
+      "key_bits": 128,
+      "set": 1,
+      "vector": 127,
+      "key": "00000000000000000000000000000001",
+      "plaintext": "00000000000000000000000000000000",
+      "ciphertext": "F668C7091F81B2827DA77DD419B708E1"
+    },
+    {
+      "key_bits": 128,
+      "set": 2,
+      "vector": 0,
+      "key": "00000000000000000000000000000000",
+      "plaintext": "80000000000000000000000000000000",
+      "ciphertext": "A3B35DE7C358DDD82644678C64B8BCBB"
+    },
+    {
+      "key_bits": 128,
+      "set": 2,
+      "vector": 127,
+      "key": "00000000000000000000000000000000",
+      "plaintext": "00000000000000000000000000000001",
+      "ciphertext": "9BEDCEA16BDE863526A937208CBF0ABC"
+    },
+    {
+      "key_bits": 128,
+      "set": 3,
+      "vector": 0,
+      "key": "00000000000000000000000000000000",
+      "plaintext": "00000000000000000000000000000000",
+      "ciphertext": "3620B17AE6A993D09618B8768266BAE9"
+    },
+    {
+      "key_bits": 128,
+      "set": 3,
+      "vector": 255,
+      "key": "FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF",
+      "plaintext": "FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF",
+      "ciphertext": "2DEE675B6B7401367DA2A80FB44B8065"
+    },
+    {
+      "key_bits": 128,
+      "set": 4,
+      "vector": 0,
+      "key": "000102030405060708090A0B0C0D0E0F",
+      "plaintext": "00112233445566778899AABBCCDDEEFF",
+      "ciphertext": "563E2CF8740A27C164804560391E9B27"
+    },
+    {
+      "key_bits": 128,
+      "set": 4,
+      "vector": 1,
+      "key": "2BD6459F82C5B300952C49104881FF48",
+      "plaintext": "EA024714AD5C4D84EA024714AD5C4D84",
+      "ciphertext": "92D7F8EF2C36C53409F275902F06539F"
+    },
+    {
+      "key_bits": 192,
+      "set": 1,
+      "vector": 0,
+      "key": "800000000000000000000000000000000000000000000000",
+      "plaintext": "00000000000000000000000000000000",
+      "ciphertext": "9E274EAD9B737BB21EFCFCA548602689"
+    },
+    {
+      "key_bits": 192,
+      "set": 1,
+      "vector": 31,
+      "key": "000000010000000000000000000000000000000000000000",
+      "plaintext": "00000000000000000000000000000000",
+      "ciphertext": "EACF9AD4EAC19266F886CB3AE50B2CA8"
+    },
+    {
+      "key_bits": 192,
+      "set": 1,
+      "vector": 191,
+      "key": "000000000000000000000000000000000000000000000001",
+      "plaintext": "00000000000000000000000000000000",
+      "ciphertext": "5D058517AC7CC5AFD5C33253D4703B46"
+    },
+    {
+      "key_bits": 192,
+      "set": 2,
+      "vector": 0,
+      "key": "000000000000000000000000000000000000000000000000",
+      "plaintext": "80000000000000000000000000000000",
+      "ciphertext": "23F5F432AD687E0D4574C16459618ABB"
+    },
+    {
+      "key_bits": 192,
+      "set": 2,
+      "vector": 127,
+      "key": "000000000000000000000000000000000000000000000000",
+      "plaintext": "00000000000000000000000000000001",
+      "ciphertext": "497EA15A5AAB3CB115C3E0091C2E4047"
+    },
+    {
+      "key_bits": 192,
+      "set": 3,
+      "vector": 0,
+      "key": "000000000000000000000000000000000000000000000000",
+      "plaintext": "00000000000000000000000000000000",
+      "ciphertext": "A583EF976A292B406BBD5DC8256B0442"
+    },
+    {
+      "key_bits": 192,
+      "set": 3,
+      "vector": 255,
+      "key": "FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF",
+      "plaintext": "FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF",
+      "ciphertext": "08FC09BD2580A3FFBC8453FAF21417C0"
+    },
+    {
+      "key_bits": 192,
+      "set": 4,
+      "vector": 0,
+      "key": "000102030405060708090A0B0C0D0E0F1011121314151617",
+      "plaintext": "00112233445566778899AABBCCDDEEFF",
+      "ciphertext": "6AB816C82DE53B93005008AFA2246A02"
+    },
+    {
+      "key_bits": 192,
+      "set": 4,
+      "vector": 1,
+      "key": "2BD6459F82C5B300952C49104881FF482BD6459F82C5B300",
+      "plaintext": "EA024714AD5C4D84EA024714AD5C4D84",
+      "ciphertext": "827B18C2678A239DFC5512842000E204"
+    },
+    {
+      "key_bits": 256,
+      "set": 1,
+      "vector": 0,
+      "key": "8000000000000000000000000000000000000000000000000000000000000000",
+      "plaintext": "00000000000000000000000000000000",
+      "ciphertext": "A223AA1288463C0E2BE38EBD825616C0"
+    },
+    {
+      "key_bits": 256,
+      "set": 1,
+      "vector": 31,
+      "key": "0000000100000000000000000000000000000000000000000000000000000000",
+      "plaintext": "00000000000000000000000000000000",
+      "ciphertext": "4A800443B44112493226E08BD9521912"
+    },
+    {
+      "key_bits": 256,
+      "set": 1,
+      "vector": 255,
+      "key": "0000000000000000000000000000000000000000000000000000000000000001",
+      "plaintext": "00000000000000000000000000000000",
+      "ciphertext": "9858FD31C9C6B54AC0C99CC52324ED34"
+    },
+    {
+      "key_bits": 256,
+      "set": 2,
+      "vector": 0,
+      "key": "0000000000000000000000000000000000000000000000000000000000000000",
+      "plaintext": "80000000000000000000000000000000",
+      "ciphertext": "8314675E8AD5C3ECD83D852BCF7F566E"
+    },
+    {
+      "key_bits": 256,
+      "set": 2,
+      "vector": 127,
+      "key": "0000000000000000000000000000000000000000000000000000000000000000",
+      "plaintext": "00000000000000000000000000000001",
+      "ciphertext": "AD86DE83231C3203A86AE33B721EAA9F"
+    },
+    {
+      "key_bits": 256,
+      "set": 3,
+      "vector": 0,
+      "key": "0000000000000000000000000000000000000000000000000000000000000000",
+      "plaintext": "00000000000000000000000000000000",
+      "ciphertext": "49672BA898D98DF95019180445491089"
+    },
+    {
+      "key_bits": 256,
+      "set": 3,
+      "vector": 255,
+      "key": "FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF",
+      "plaintext": "FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF",
+      "ciphertext": "6AC7579D9377845A816CA6D758F3FEFF"
+    },
+    {
+      "key_bits": 256,
+      "set": 4,
+      "vector": 0,
+      "key": "000102030405060708090A0B0C0D0E0F101112131415161718191A1B1C1D1E1F",
+      "plaintext": "00112233445566778899AABBCCDDEEFF",
+      "ciphertext": "2868B7A2D28ECD5E4FDEFAC3C4330074"
+    },
+    {
+      "key_bits": 256,
+      "set": 4,
+      "vector": 1,
+      "key": "2BD6459F82C5B300952C49104881FF482BD6459F82C5B300952C49104881FF48",
+      "plaintext": "EA024714AD5C4D84EA024714AD5C4D84",
+      "ciphertext": "3E507730776B93FDEA661235E1DD99F0"
+    }
+  ]
+}

@@ -1,0 +1,274 @@
+{
+  "seed": 1582251543,
+  "external_kats": 27,
+  "smoke_tests": [
+    "1-s",
+    "2-s"
+  ],
+  "runs": [
+    {
+      "variant": "1-s",
+      "key_bits": 128,
+      "blocks": 1,
+      "ecb": false,
+      "cycles": 815,
+      "accepted": 288,
+      "emitted": 208,
+      "flushed": 80
+    },
+    {
+      "variant": "1-s",
+      "key_bits": 128,
+      "blocks": 1,
+      "ecb": true,
+      "cycles": 815,
+      "accepted": 288,
+      "emitted": 208,
+      "flushed": 80
+    },
+    {
+      "variant": "1-s",
+      "key_bits": 128,
+      "blocks": 2,
+      "ecb": true,
+      "cycles": 815,
+      "accepted": 288,
+      "emitted": 208,
+      "flushed": 80
+    },
+    {
+      "variant": "1-s",
+      "key_bits": 128,
+      "blocks": 3,
+      "ecb": true,
+      "cycles": 815,
+      "accepted": 288,
+      "emitted": 208,
+      "flushed": 80
+    },
+    {
+      "variant": "1-s",
+      "key_bits": 192,
+      "blocks": 1,
+      "ecb": false,
+      "cycles": 815,
+      "accepted": 288,
+      "emitted": 208,
+      "flushed": 80
+    },
+    {
+      "variant": "1-s",
+      "key_bits": 192,
+      "blocks": 1,
+      "ecb": true,
+      "cycles": 815,
+      "accepted": 288,
+      "emitted": 208,
+      "flushed": 80
+    },
+    {
+      "variant": "1-s",
+      "key_bits": 192,
+      "blocks": 2,
+      "ecb": true,
+      "cycles": 815,
+      "accepted": 288,
+      "emitted": 208,
+      "flushed": 80
+    },
+    {
+      "variant": "1-s",
+      "key_bits": 192,
+      "blocks": 3,
+      "ecb": true,
+      "cycles": 815,
+      "accepted": 288,
+      "emitted": 208,
+      "flushed": 80
+    },
+    {
+      "variant": "1-s",
+      "key_bits": 256,
+      "blocks": 1,
+      "ecb": false,
+      "cycles": 815,
+      "accepted": 288,
+      "emitted": 208,
+      "flushed": 80
+    },
+    {
+      "variant": "1-s",
+      "key_bits": 256,
+      "blocks": 1,
+      "ecb": true,
+      "cycles": 815,
+      "accepted": 288,
+      "emitted": 208,
+      "flushed": 80
+    },
+    {
+      "variant": "1-s",
+      "key_bits": 256,
+      "blocks": 2,
+      "ecb": true,
+      "cycles": 815,
+      "accepted": 288,
+      "emitted": 208,
+      "flushed": 80
+    },
+    {
+      "variant": "1-s",
+      "key_bits": 256,
+      "blocks": 3,
+      "ecb": true,
+      "cycles": 815,
+      "accepted": 288,
+      "emitted": 208,
+      "flushed": 80
+    },
+    {
+      "variant": "2-s",
+      "key_bits": 128,
+      "blocks": 1,
+      "ecb": false,
+      "cycles": 551,
+      "accepted": 248,
+      "emitted": 208,
+      "flushed": 40
+    },
+    {
+      "variant": "2-s",
+      "key_bits": 128,
+      "blocks": 1,
+      "ecb": true,
+      "cycles": 551,
+      "accepted": 248,
+      "emitted": 208,
+      "flushed": 40
+    },
+    {
+      "variant": "2-s",
+      "key_bits": 128,
+      "blocks": 2,
+      "ecb": true,
+      "cycles": 551,
+      "accepted": 248,
+      "emitted": 208,
+      "flushed": 40
+    },
+    {
+      "variant": "2-s",
+      "key_bits": 128,
+      "blocks": 3,
+      "ecb": true,
+      "cycles": 551,
+      "accepted": 248,
+      "emitted": 208,
+      "flushed": 40
+    },
+    {
+      "variant": "2-s",
+      "key_bits": 192,
+      "blocks": 1,
+      "ecb": false,
+      "cycles": 551,
+      "accepted": 248,
+      "emitted": 208,
+      "flushed": 40
+    },
+    {
+      "variant": "2-s",
+      "key_bits": 192,
+      "blocks": 1,
+      "ecb": true,
+      "cycles": 551,
+      "accepted": 248,
+      "emitted": 208,
+      "flushed": 40
+    },
+    {
+      "variant": "2-s",
+      "key_bits": 192,
+      "blocks": 2,
+      "ecb": true,
+      "cycles": 551,
+      "accepted": 248,
+      "emitted": 208,
+      "flushed": 40
+    },
+    {
+      "variant": "2-s",
+      "key_bits": 192,
+      "blocks": 3,
+      "ecb": true,
+      "cycles": 551,
+      "accepted": 248,
+      "emitted": 208,
+      "flushed": 40
+    },
+    {
+      "variant": "2-s",
+      "key_bits": 256,
+      "blocks": 1,
+      "ecb": false,
+      "cycles": 551,
+      "accepted": 248,
+      "emitted": 208,
+      "flushed": 40
+    },
+    {
+      "variant": "2-s",
+      "key_bits": 256,
+      "blocks": 1,
+      "ecb": true,
+      "cycles": 551,
+      "accepted": 248,
+      "emitted": 208,
+      "flushed": 40
+    },
+    {
+      "variant": "2-s",
+      "key_bits": 256,
+      "blocks": 2,
+      "ecb": true,
+      "cycles": 551,
+      "accepted": 248,
+      "emitted": 208,
+      "flushed": 40
+    },
+    {
+      "variant": "2-s",
+      "key_bits": 256,
+      "blocks": 3,
+      "ecb": true,
+      "cycles": 551,
+      "accepted": 248,
+      "emitted": 208,
+      "flushed": 40
+    }
+  ],
+  "validation_date": "2026-09-16",
+  "base_commit": "9d71adf144070d2e21ab2016666024692af01b71",
+  "environment": {
+    "simulator": "Icarus Verilog 13.0",
+    "python": "3.12.14",
+    "platform": "macOS ARM64"
+  },
+  "quartus_synthesis_performed": false,
+  "validated_source_sha256": {
+    "1-s/serpent_encryption.v": "6012697537569fe9d8350ff17575662a36512acda3caf18c5a7b9bac2f8710bd",
+    "1-s/serpent_key_generator.v": "95098962ee07f0b551823fcfbb083d738f68077490796b380d90fa88b79953ff",
+    "1-s/serpent_linear_transformation.v": "fbf7418b1e2ebe9206f2c4299b8538b8bebf9488d5767257d901a7222ae2d75d",
+    "1-s/serpent_s_box.v": "f885a5b6636b2219cb9764b9f67bb39e57713d8f8227c33a017b6e9e9e228a73",
+    "1-s/tb_serpent.v": "161990daa2411ba8015e3107b94fe995a679f1e6d0380e5964272dfdf30b2bb8",
+    "2-s/serpent_encryption.v": "609d5f79898fa1b49e1bab4a59d5c7eaecb781af0d63aebae0e68bcd75f39686",
+    "2-s/serpent_key_generator.v": "95098962ee07f0b551823fcfbb083d738f68077490796b380d90fa88b79953ff",
+    "2-s/serpent_linear_transformation.v": "fbf7418b1e2ebe9206f2c4299b8538b8bebf9488d5767257d901a7222ae2d75d",
+    "2-s/serpent_s_box.v": "f885a5b6636b2219cb9764b9f67bb39e57713d8f8227c33a017b6e9e9e228a73",
+    "2-s/tb_serpent.v": "b20756fa058046be188ae199ba96f283195d60ed91dff83bae129b786c7d9bb7",
+    "tests/kat_vectors.json": "06ddbf0e923de6652943e018a0dd605f30dcab6e2777af74fd299d58ca9d806d",
+    "tests/reference_serpent.py": "051e0bf3b6bd58790f39cfa0d62b88c0738727a1274cb29677dffeb9244f9be8",
+    "tests/run_tests.py": "ef6c7dd44c7c5230edc457657608e7a565a36b3a7a1cd53ec58061629f33a222",
+    "tests/tb_pipeline.sv": "f766119460b2efe0a5d3c75f71dd62c2cf1dca1c223235c89269cd8f3820cc38"
+  }
+}
