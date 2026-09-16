@@ -1,5 +1,9 @@
 `timescale 1ns/1ps
+`default_nettype none
+
+// Bitslice ordering: S-box input bit 0 is x0[i], output bit 0 is y0[i].
 module Serpent_Sbox_template #(parameter IDX = 0) (
+    input  wire [31:0] x0, x1, x2, x3,
     output wire [31:0] y0, y1, y2, y3
 );
     function automatic [3:0] sbox;
@@ -70,7 +74,7 @@ module Serpent_Sbox_template #(parameter IDX = 0) (
         end
     endgenerate
 endmodule
-//Обёртки
+
 module Serpent_S0 (input  wire [31:0] x0, x1, x2, x3,
                    output wire [31:0] y0, y1, y2, y3);
     Serpent_Sbox_template #(.IDX(0)) impl (.*);
@@ -110,3 +114,5 @@ module Serpent_S7 (input  wire [31:0] x0, x1, x2, x3,
                    output wire [31:0] y0, y1, y2, y3);
     Serpent_Sbox_template #(.IDX(7)) impl (.*);
 endmodule
+
+`default_nettype wire

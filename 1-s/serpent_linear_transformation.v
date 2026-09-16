@@ -1,18 +1,19 @@
 `timescale 1ns/1ps
 `default_nettype none
-function automatic [31:0] rotl32;
-    input [31:0] d;
-    input [4:0]  n;
-begin
-    rotl32 = (d << n) | (d >> (32 - n));
-end
-endfunction
-
+// Serpent bitslice LT; input/output word 0 occupies bits [31:0].
 module Serpent_LT
 (
     input  wire [127:0] in_state,
     output wire [127:0] out_state
 );
+    function automatic [31:0] rotl32;
+        input [31:0] d;
+        input [4:0]  n;
+        begin
+            rotl32 = (d << n) | (d >> (32 - n));
+        end
+    endfunction
+
     wire [31:0] X0_i, X1_i, X2_i, X3_i;
     assign {X3_i, X2_i, X1_i, X0_i} = in_state;
 

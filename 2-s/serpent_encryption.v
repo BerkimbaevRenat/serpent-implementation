@@ -1,13 +1,29 @@
 `timescale 1ns/1ps
+`default_nettype none
 
 module SerpentEncryptCorePipelined2R (
     input  wire             clk,
+    input  wire             rst,
+    input  wire             in_valid,
     input  wire [127:0]     data_in,
     input  wire [127:0]     subkeys [0:32],
+    output wire             out_valid,
     output wire [127:0]     data_out
 );
 
+    // Subkeys must remain stable while any block is in flight. The top
+    // module enforces this by flushing validity whenever a key is loaded.
+    // 17 register banks preserve the original fully unrolled datapath.
     reg [127:0] pipeline_reg [0:16];
+    reg [16:0] valid_pipeline;
+
+    always @(posedge clk) begin
+        if (rst)
+            valid_pipeline <= 17'b0;
+        else
+            valid_pipeline <= {valid_pipeline[15:0], in_valid};
+    end
+
 
     always @(posedge clk) begin
         pipeline_reg[0] <= data_in;
@@ -91,33 +107,63 @@ module SerpentEncryptCorePipelined2R (
         end
     endgenerate
 
-    assign data_out = pipeline_reg[16];
+    assign out_valid = valid_pipeline[16];
+    // Payload registers need no reset: invalid output is always masked.
+    assign data_out = out_valid ? pipeline_reg[16] : 128'b0;
 
 endmodule
 
-module SerpentEncryptTopPipelined2R (
-    input  wire             clk,
-    input  wire [127:0]     data_in,
-    output wire [127:0]     data_out
+// Byte 0 of the plaintext/ciphertext is bits [7:0] (little-endian words).
+// A block is accepted on a rising edge with in_valid && in_ready.
+// It appears with out_valid exactly 16 clock periods later. There is no
+// output backpressure: a fully occupied pipeline produces one block per cycle.
+// rst is synchronous and active high. key_load has priority over data input:
+// it registers all expanded subkeys and discards every in-flight block. The
+// newly loaded key can accept its first block on the following rising edge.
+module SerpentEncryptTopPipelined2R #(
+    parameter integer KEY_BITS = 256
+)(
+    input  wire                    clk,
+    input  wire                    rst,
+    input  wire                    key_load,
+    input  wire [KEY_BITS-1:0]     key_in,
+    input  wire                    in_valid,
+    input  wire [127:0]            data_in,
+    output reg                     key_ready,
+    output wire                    in_ready,
+    output wire                    out_valid,
+    output wire [127:0]            data_out
 );
+    wire [127:0] expanded_keys [0:32];
+    reg  [127:0] roundKeys [0:32];
+    integer k;
 
-    localparam [255:0] key256 =
-        256'h0123_4567_89AB_CDEF_0123_4567_89AB_CDEF_0123_4567_89AB_CDEF_0123_4567_89AB_CDEF;
-
-    wire [127:0] roundKeys [0:32];
-
-    serpent_keys key_expander (
-        .key256 (key256),
-        .keys   (roundKeys)
+    serpent_keys #(.KEY_BITS(KEY_BITS)) key_expander (
+        .key_in (key_in),
+        .keys   (expanded_keys)
     );
 
-    SerpentEncryptCorePipelined2R core2r (
+    always @(posedge clk) begin
+        if (rst) begin
+            key_ready <= 1'b0;
+        end else if (key_load) begin
+            for (k = 0; k < 33; k = k + 1)
+                roundKeys[k] <= expanded_keys[k];
+            key_ready <= 1'b1;
+        end
+    end
+
+    assign in_ready = key_ready && !key_load && !rst;
+
+    SerpentEncryptCorePipelined2R core (
         .clk       (clk),
+        .rst       (rst || key_load),
+        .in_valid  (in_valid && in_ready),
         .data_in   (data_in),
         .subkeys   (roundKeys),
+        .out_valid (out_valid),
         .data_out  (data_out)
     );
-
 endmodule
 
 module generate_sbox #(parameter integer R = 0)(
@@ -146,27 +192,52 @@ module generate_sbox #(parameter integer R = 0)(
     endgenerate
 endmodule
 
+// Parallel ECB lanes share the key-load and valid controls. All lanes accept
+// a packed group together; lane 0 occupies data_in[127:0]. Their readiness
+// and output validity are identical, so lane 0 supplies the shared flags.
 module SerpentEncryptECB #(
-    parameter integer BLOCKS = 2
+    parameter integer BLOCKS = 2,
+    parameter integer KEY_BITS = 256
 )(
-    input  wire [BLOCKS*128-1 : 0] data_in,
-    output wire [BLOCKS*128-1 : 0] data_out
+    input  wire                        clk,
+    input  wire                        rst,
+    input  wire                        key_load,
+    input  wire [KEY_BITS-1:0]         key_in,
+    input  wire                        in_valid,
+    input  wire [BLOCKS*128-1:0]       data_in,
+    output wire                        key_ready,
+    output wire                        in_ready,
+    output wire                        out_valid,
+    output wire [BLOCKS*128-1:0]       data_out
 );
+    wire [BLOCKS-1:0] lane_key_ready;
+    wire [BLOCKS-1:0] lane_in_ready;
+    wire [BLOCKS-1:0] lane_out_valid;
 
     genvar i;
     generate
+        if (BLOCKS < 1) begin : INVALID_BLOCK_COUNT
+            initial $fatal(1, "BLOCKS must be positive");
+        end
         for (i = 0; i < BLOCKS; i = i + 1) begin : GEN_CORE
-
-            wire [127:0] block_in  = data_in  [128*(i+1)-1 : 128*i];
-            wire [127:0] block_out;
-
-            SerpentEncryptTopPipelined2R single_block_core (
-                .data_in  (block_in),
-                .data_out (block_out)
+            SerpentEncryptTopPipelined2R #(.KEY_BITS(KEY_BITS)) single_block_core (
+                .clk       (clk),
+                .rst       (rst),
+                .key_load  (key_load),
+                .key_in    (key_in),
+                .in_valid  (in_valid),
+                .data_in   (data_in[128*i +: 128]),
+                .key_ready (lane_key_ready[i]),
+                .in_ready  (lane_in_ready[i]),
+                .out_valid (lane_out_valid[i]),
+                .data_out  (data_out[128*i +: 128])
             );
-
-            assign data_out [128*(i+1)-1 : 128*i] = block_out;
         end
     endgenerate
 
+    assign key_ready = lane_key_ready[0];
+    assign in_ready  = lane_in_ready[0];
+    assign out_valid = lane_out_valid[0];
 endmodule
+
+`default_nettype wire
